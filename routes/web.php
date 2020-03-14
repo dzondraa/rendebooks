@@ -18,6 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('/login', 'LoginController');
+
+
 // PROTECTED ADMIN ROUTES
 
 Route::middleware(['isAdmin'])->group(function () {
