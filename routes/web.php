@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+// PROTECTED ADMIN ROUTES
+
+Route::middleware(['isAdmin'])->group(function () {
+    Route::get('/admin', function () {
+        return dd("asd");
+    });
+
 });
