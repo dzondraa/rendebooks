@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Controllers\LoginController;
 use Closure;
 
 class IsAdmin
@@ -13,9 +14,10 @@ class IsAdmin
      * @param  \Closure  $next
      * @return mixed
      */
-        public function handle($request, Closure $next)
+
+    public function handle($request, Closure $next)
         {
-            // IF LoginController::isAdmin() - TO DO - make controller with that functionf
+
             if (true) {
                 return $next($request);
             }

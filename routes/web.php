@@ -14,11 +14,8 @@ use App\Http\Middleware;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::resource('/login', 'LoginController');
+Route::post('/login', 'LoginController@login')->name('login');
+Route::get('/login', 'LoginController@create')->name('loginForm');
 
 
 // PROTECTED ADMIN ROUTES

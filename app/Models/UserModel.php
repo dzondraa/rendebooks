@@ -4,6 +4,7 @@
 namespace App\Models;
 
 
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\DB;
 
 class UserModel
@@ -19,14 +20,9 @@ class UserModel
     }
 
     public  function login($username, $password) {
-        $user = DB::table('user')
+        $user = DB::table('users')
             ->where('username' ,'=' , $username)
-            ->where('password', '=', md5($password))->get();
-        if($user) {
-            return $user;
-        }
-        else {
-            return null;
-        }
+            ->get();
+        return $user;
     }
 }
