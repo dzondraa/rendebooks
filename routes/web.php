@@ -14,6 +14,9 @@ use App\Http\Middleware;
 |
 */
 
+Route::get('/', function () {
+    return view('pages.home');
+});
 Route::post('/login', 'LoginController@login')->name('login');
 Route::get('/login', 'LoginController@create')->name('loginForm');
 Route::get('/logout', 'LoginController@logout')->name('logout');

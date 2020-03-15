@@ -18,3 +18,4 @@
 @if(session()->has('user'))
     <a href="{{route('logout')}}">Logout</a>
 @endif
+<link rel="stylesheet" href="{{asset('/css/app.css')}}">

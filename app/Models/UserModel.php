@@ -20,12 +20,11 @@ class UserModel
     }
 
     public  function getUser($username, $password) {
-        $user = DB::table('users')
+        return DB::table('users')
             ->where([
                 ['username', '=', $username],
                 ['password', '=', md5($password)]
             ])
             ->get();
-        return $user;
     }
 }
