@@ -29,14 +29,18 @@ class LoginController extends Controller
     }
 
     public function login(Request $request) {
-        $user = $this->model->login($request->get('username'), $request->get('password'));
+        $user = $this->model->getUser($request->get('username'), $request->get('password'));
         if(!$user->isEmpty()) {
             session()->put('user', $user->first());
         }
         return redirect('/login');
     }
 
-    public function isAdmin() {
-        return session()->get('user') && session()->get('user')->role == 1 ? true : false;
+    public function logout() {
+        if(session()->has('user')){
+            session()->forget('user');
+            return redirect('/');
+        }
     }
+
 }

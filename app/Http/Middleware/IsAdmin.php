@@ -18,10 +18,10 @@ class IsAdmin
     public function handle($request, Closure $next)
         {
 
-            if (true) {
-                return $next($request);
+            if (!session()->has('user')) {
+                return redirect('/login');
+            } else {
+               dd(session()->get('user'));
             }
-
-            return redirect('/');
         }
 }

@@ -15,3 +15,6 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+@if(session()->has('user'))
+    <a href="{{route('logout')}}">Logout</a>
+@endif
