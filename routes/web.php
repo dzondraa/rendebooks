@@ -25,8 +25,6 @@ Route::get('/logout', 'LoginController@logout')->name('logout');
 // PROTECTED ADMIN ROUTES
 
 Route::middleware(['isAdmin'])->group(function () {
-    Route::get('/admin', function () {
-        return dd("asd");
-    });
+    Route::get('/admin', 'FrontEndController@admin');
 
 });

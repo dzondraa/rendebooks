@@ -21,7 +21,11 @@ class IsAdmin
             if (!session()->has('user')) {
                 return redirect('/login');
             } else {
-               dd(session()->get('user'));
+               if(session()->get('user')->role == 1) {
+                   return $next($request);
+               } else {
+                   return redirect('/');
+               }
             }
         }
 }
