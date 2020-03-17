@@ -18,6 +18,7 @@ class UserController extends Controller
     public  function __construct()
     {
         $this->model = new UserModel();
+        $this->middleware('userRegistrationValidator', ['only' => ['store']]);
     }
 
     public function index()
@@ -45,7 +46,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->input());
     }
 
     /**
