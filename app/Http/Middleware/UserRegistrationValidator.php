@@ -23,6 +23,7 @@ class UserRegistrationValidator
             'first_name' => 'required|max:25',
             'last_name' => 'required|max:25',
             'username' => 'unique:users|max:25|required',
+            'phone_number' => 'unique:users|required',
             'email' => 'email',
         ]);
 

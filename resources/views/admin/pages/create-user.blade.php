@@ -36,6 +36,10 @@
                 <input type="email" class="form-control" name="email" placeholder="Email">
             </div>
             <div class="form-group">
+                <label>Phone number</label>
+                <input type="text" class="form-control" name="phone_number" placeholder="Phone number">
+            </div>
+            <div class="form-group">
                 <label for="exampleFormControlSelect1">User role</label>
                 <select name="role" class="form-control" id="exampleFormControlSelect1">
                     <option value="0">Select user role</option>

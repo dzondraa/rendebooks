@@ -43,7 +43,7 @@ class UserModel
                     'last_name' => $last_name,
                     'password' => $password,
                     'email' => $email,
-                    'phone_number' => '063311627',
+                    'phone_number' => $phoneNumber,
                     'role' => $roleId
                 ]
             );
