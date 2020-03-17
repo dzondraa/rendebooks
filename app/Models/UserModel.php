@@ -13,9 +13,9 @@ class UserModel
     // Get all user records or 1 single if id is passed
     public  function get($id = null) {
         if($id == null) {
-            DB::table('users')->get();
+            return DB::table('users')->join('roles' , 'users.role', '=', 'roles.id')->get();
         } else {
-            DB::table('users')->where('id', '=', $id)->get();
+            return DB::table('users')->where('id', '=', $id)->get();
         }
     }
 
@@ -26,5 +26,9 @@ class UserModel
                 ['password', '=', md5($password)]
             ])
             ->get();
+    }
+
+    public function getRoles() {
+        return DB::table('roles')->get();
     }
 }
