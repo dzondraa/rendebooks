@@ -32,8 +32,14 @@ class LoginController extends Controller
         $user = $this->model->getUser($request->get('username'), $request->get('password'));
         if(!$user->isEmpty()) {
             session()->put('user', $user->first());
+            if($user->first()->role == 1) {
+                return redirect('/admin');
+            } else {
+                return redirect('/');
+            }
         }
         return redirect('/login');
+
     }
 
     public function logout() {

@@ -3,6 +3,11 @@
 @section('content')
     <div class="container">
         <h1 class="text-center">User list</h1>
+        @if (session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
         <table class="table table-hover table-dark">
             <thead>
             <tr>
@@ -16,9 +21,10 @@
             </tr>
             </thead>
             <tbody>
+            @php($counter = 1);
             @foreach($users as $user)
                 <tr>
-                    <th scope="row">{{$user->id}}</th>
+                    <th scope="row">{{$counter++}}</th>
                     <td>{{$user->username}}</td>
                     <td>{{$user->first_name}}</td>
                     <td>{{$user->last_name}}</td>

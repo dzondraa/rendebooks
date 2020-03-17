@@ -18,14 +18,13 @@ class UserRegistrationValidator
      */
     public function handle($request, Closure $next)
     {
+//        dd($request->input());
         $validatedData = $request->validate([
             'first_name' => 'required|max:25',
             'last_name' => 'required|max:25',
-            'username' => 'required|unique:users|max:25',
-            'email' => 'required|email address',
+            'username' => 'unique:users|max:25|required',
+            'email' => 'email',
         ]);
-
-        dd($validatedData);
 
         return $next($request);
     }

@@ -46,7 +46,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->input());
+        $success = $this->model->insert($request->username, $request->first_name, $request->last_name, md5($request->password), $request->email, $request->phone_number, $request->role);
+        if($success) {
+            return redirect('/admin/users')->with('message', 'User created successfuly!');
+        }
     }
 
     /**
