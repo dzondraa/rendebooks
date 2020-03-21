@@ -14,7 +14,7 @@ class UserModel
     // Get all user records or 1 single if id is passed
     public  function get($id = null) {
         if($id == null) {
-            return DB::table('users')->join('roles' , 'users.role', '=', 'roles.id')->get();
+            return DB::table('users')->select('users.*' , 'users.id as uid', 'roles.*')->join('roles' , 'users.role', '=', 'roles.id')->get();
         } else {
             return DB::table('users')->where('id', '=', $id)->get();
         }
@@ -53,5 +53,10 @@ class UserModel
         }
         return $success;
 
+    }
+
+    public function delete($id) {
+       $res = DB::table('users')->where('id', '=', $id)->delete();
+       return $this->get()->all();
     }
 }

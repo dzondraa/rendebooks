@@ -41,7 +41,7 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">User management:</h6>
-                    <a class="collapse-item" href="/admin/users">List</a>
+                    <a class="collapse-item" href="/admin/users-list">List</a>
                     <a class="collapse-item" href="/admin/users/create">Create user</a>
                 </div>
             </div>

@@ -26,6 +26,7 @@ Route::get('/logout', 'LoginController@logout')->name('logout');
 
 Route::middleware(['isAdmin'])->group(function () {
     Route::get('/admin', 'FrontEndController@admin');
+    Route::get('/admin/users-list', 'FrontEndController@userList');
     Route::resource('/admin/users', 'UserController');
 
 });

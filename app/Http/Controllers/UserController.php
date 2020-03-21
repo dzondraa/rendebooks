@@ -23,9 +23,9 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = $this->model->get();
-        return view('admin.pages.user-list')->with('users' , $users);
+        return $this->model->get();
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -48,7 +48,7 @@ class UserController extends Controller
     {
         $success = $this->model->insert($request->username, $request->first_name, $request->last_name, md5($request->password), $request->email, $request->phone_number, $request->role);
         if($success) {
-            return redirect('/admin/users')->with('message', 'User created successfuly!');
+            return redirect('/admin/users-list')->with('message', 'User created successfuly!');
         }
     }
 
@@ -94,6 +94,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $res = $this->model->delete($id);
+        return $this->model->get();
     }
 }
