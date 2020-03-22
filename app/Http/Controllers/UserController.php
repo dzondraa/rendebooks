@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditUser;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
 
@@ -81,9 +82,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditUser $request, $id)
     {
-        //
+        $validated = $request->validated();
     }
 
     /**

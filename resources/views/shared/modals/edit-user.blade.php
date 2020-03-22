@@ -36,7 +36,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Update user</button>
+                    <button data-id="" type="button" id="edit-user-button" class="btn btn-primary btn-lg btn-block">Update user</button>
                 </div>
             </form>
         </div>
