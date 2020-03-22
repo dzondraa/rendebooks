@@ -85,6 +85,7 @@ class UserController extends Controller
     public function update(EditUser $request, $id)
     {
         $validated = $request->validated();
+        $this->model->update($id, $request->input());
     }
 
     /**

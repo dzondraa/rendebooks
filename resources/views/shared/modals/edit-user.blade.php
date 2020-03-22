@@ -16,10 +16,6 @@
                     <input type="text" id="username" class="form-control" name="username" placeholder="Username">
                 </div>
                 <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" id="password" class="form-control" name="password" placeholder="Password">
-                </div>
-                <div class="form-group">
                     <label>Email</label>
                     <input type="email" id="email" class="form-control" name="email" placeholder="Email">
                 </div>
@@ -35,6 +31,11 @@
                         <option value="2">User</option>
                     </select>
                 </div>
+{{--                 PLACEHOLDER FOR ERRORS--}}
+                <div id="errors">
+
+                </div>
+
                 <div class="form-group">
                     <button data-id="" type="button" id="edit-user-button" class="btn btn-primary btn-lg btn-block">Update user</button>
                 </div>

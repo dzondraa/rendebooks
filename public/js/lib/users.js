@@ -82,7 +82,6 @@ function user() {
     }
 
     function populateModal(user) {
-        console.log('USER ROLE' , user)
         document.querySelector('#first_name').value = user.first_name
         document.querySelector('#last_name').value = user.last_name
         document.querySelector('#username').value = user.username
@@ -102,25 +101,44 @@ function user() {
         const username = document.querySelector('#username').value
         const email = document.querySelector('#email').value
         const phone_number = document.querySelector('#phone_number').value
+        role = document.querySelector('#role-dropdown').options[document.querySelector('#role-dropdown').selectedIndex].value;
         $.ajax({
             url: siteUrl + `/admin/users/${id}`,
             method: 'PATCH',
-            dataType: 'JSON',
             data: {
                 id: id,
                 first_name: first_name,
                 last_name: last_name,
                 username: username,
                 email: email,
-                phone_number: phone_number
+                phone_number: phone_number,
+                role: role
             },
-            success(data) {
-                console.log(data)
+            success() {
+                displaySuccessFeedback('User updated successfuly!' , 'errors')
+                showAll()
             },
-            error(x , hr) {
-                console.error('Edit user error: ' + hr)
+            error(x) {
+                console.log()
+                displayErrors(x.responseJSON.errors, 'errors')
             }
         })
+    }
+
+    function displayErrors(errors, div) {
+        let str = '<div class="alert alert-danger" role="alert"><ul>';
+        for (const prop in errors) {
+            str += `<li>${errors[prop]}</li>`
+        }
+        str += '</ul></div>'
+        document.querySelector(`#${div}`).innerHTML = str;
+    }
+
+    function displaySuccessFeedback(message, div) {
+        document.querySelector(`#${div}`).innerHTML =
+            `<div id="success" class="alert alert-success" role="alert">
+                ${message}
+            </div>`
     }
 
     return { deleteUser, showAll, generateTable, showModal };
