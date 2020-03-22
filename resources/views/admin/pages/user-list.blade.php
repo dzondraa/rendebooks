@@ -29,7 +29,7 @@
     </div>
 @endsection
 @section('scripts')
-    // IMPORT FOR USER MODULE LIB
+{{--     IMPORT FOR USER MODULE LIB--}}
     <script src="{{asset('js/lib/users.js')}}"></script>
     <script>
         const siteUrl = document.location.origin
