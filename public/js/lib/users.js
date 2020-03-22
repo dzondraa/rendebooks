@@ -69,6 +69,7 @@ function user() {
     }
 
     function showModal(id) {
+        clearFeedbacks()
         $.ajax({
             url: `${siteUrl}/admin/users/${id}`,
             method: 'GET',
@@ -139,6 +140,10 @@ function user() {
             `<div id="success" class="alert alert-success" role="alert">
                 ${message}
             </div>`
+    }
+
+    function clearFeedbacks() {
+        document.querySelector('#errors').innerHTML = '';
     }
 
     return { deleteUser, showAll, generateTable, showModal };

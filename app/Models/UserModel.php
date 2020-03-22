@@ -65,15 +65,20 @@ class UserModel
 
     public function update($id, $data) {
         $data = (object)$data;
-        DB::table('users')
-            ->where('id', '=', $id)
-            ->update([
-                'first_name' => $data->first_name,
-                'last_name' => $data->last_name,
-                'email' => $data->email,
-                'username' => $data->username,
-                'role' => $data->role,
-                'phone_number' => $data->phone_number,
-            ]);
+        try {
+            DB::table('users')
+                ->where('id', '=', $id)
+                ->update([
+                    'first_name' => $data->first_name,
+                    'last_name' => $data->last_name,
+                    'email' => $data->email,
+                    'username' => $data->username,
+                    'role' => $data->role,
+                    'phone_number' => $data->phone_number,
+                ]);
+        } catch (\PDOException $exception) {
+            Log::error($exception->getMessage());
+        }
+
     }
 }
