@@ -49,14 +49,17 @@ class UserModel
             );
         } catch (\PDOException $exception) {
             Log::alert($exception->getMessage());
-            dd($exception->getMessage());
         }
         return $success;
 
     }
 
     public function delete($id) {
-       $res = DB::table('users')->where('id', '=', $id)->delete();
+        try {
+            $res = DB::table('users')->where('id', '=', $id)->delete();
+        } catch (\PDOException $exception) {
+            Log::alert($exception->getMessage());
+        }
        return $this->get()->all();
     }
 }

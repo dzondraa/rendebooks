@@ -60,7 +60,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        return $this->model->get($id);
     }
 
     /**

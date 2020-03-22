@@ -28,6 +28,7 @@
         </table>
     </div>
 @endsection
+@include('shared.modals.edit-user')
 @section('scripts')
     <script>
         const siteUrl = document.location.origin
@@ -93,7 +94,7 @@
                             <td>${user.name}</td>
                             <td>
                                 <button data-id="${user.uid}" type="button" class="btn user-delete btn-danger">Delete</button>
-                                <button type="button" class="btn btn-info">Edit</button>
+                                <button data-id="${user.uid}" type="button" class="btn btn-info user-edit" data-toggle="modal" data-target=".edit-user">Edit</button>
                             </td>
                         </tr>
                     `
@@ -109,9 +110,37 @@
                     }
 
                 })
+                $(".user-edit").click(function () {
+                    const userId = $(this).data('id')
+                    showModal(userId)
+
+                })
             }
 
-            return { deleteUser, setupAjax, showAll, generateTable };
+            function showModal(id) {
+                $.ajax({
+                    url: `${siteUrl}/admin/users/${id}`,
+                    method: 'GET',
+                    success(data) {
+                        populateModal(data[0])
+                    },
+                    error(x,hr) {
+                        console.error(x)
+                    }
+                })
+            }
+
+            function populateModal(user) {
+                console.log('USER ROLE' , user)
+                document.querySelector('#first_name').value = user.first_name
+                document.querySelector('#last_name').value = user.last_name
+                document.querySelector('#username').value = user.username
+                document.querySelector('#email').value = user.email
+                document.querySelector('#phone_number').value = user.phone_number
+                $('#role-dropdown option[value="'+user.role+'"]').attr("selected", "true")
+            }
+
+            return { deleteUser, setupAjax, showAll, generateTable, showModal };
         }
     </script>
 @endsection
