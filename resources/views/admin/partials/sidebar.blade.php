@@ -56,8 +56,8 @@
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Book management:</h6>
-                    <a class="collapse-item" href="utilities-color.html">List</a>
-                    <a class="collapse-item" href="utilities-border.html">Add new book</a>
+                    <a class="collapse-item" href="/admin/users-list">List</a>
+                    <a class="collapse-item" href="/admin/books/create">Add new book</a>
                 </div>
             </div>
         </li>

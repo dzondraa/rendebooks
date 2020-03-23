@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1 class="text-center">Create user</h1>
+        <h1 class="text-center">Add new book</h1>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -13,44 +13,63 @@
             </div>
         @endif
 
-        <form action="{{route('users.store')}}" method="post">
+        <form action="{{route('books.store')}}" method="post">
             @csrf
             <div class="form-group">
-                <label>First name</label>
-                <input type="text" name="first_name" class="form-control" placeholder="First name">
+                <label>Title</label>
+                <input type="text" name="title" class="form-control" placeholder="Book title">
             </div>
             <div class="form-group">
-                <label>Last name</label>
-                <input type="text" name="last_name" class="form-control" placeholder="Last name">
+                <label for="description">Description</label>
+                <textarea class="form-control" name="description" id="description" rows="6"></textarea>
             </div>
             <div class="form-group">
-                <label>Username</label>
-                <input type="text" class="form-control" name="username" placeholder="Username">
+                <label for="teaser">Teaser</label>
+                <textarea class="form-control" id="teaser" name="teaser" rows="6"></textarea>
             </div>
             <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Password">
+                <label>ISBN</label>
+                <input type="text" id="isbn" name="isbn" decimal='0' max="2020" min="1800" class="form-control" placeholder="isbn">
             </div>
             <div class="form-group">
-                <label>Email</label>
-                <input type="email" class="form-control" name="email" placeholder="Email">
+                <label>Publishing year</label>
+                <input type="number" name="isbn" decimal='0' max="2020" min="1800" class="form-control" id="publishing_year" name="publishing_year">
             </div>
             <div class="form-group">
-                <label>Phone number</label>
-                <input type="text" class="form-control" name="phone_number" placeholder="Phone number">
+                <label>Price</label>
+                <input type="number" name="isbn" class="form-control" id="price" name="price">
             </div>
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">User role</label>
-                <select name="role" class="form-control" id="exampleFormControlSelect1">
-                    <option value="0">Select user role</option>
-                    @foreach($roles as $role)
-                        <option  value="{{$role->id}}" id="{{$role->id}}">{{$role->name}}</option>
-                    @endforeach
-                </select>
+            <label>Book photo</label>
+            <div style="height: 150px" class="form-group">
+                <input type="file" class="form-control-file" id="photo">
+                <div id="uploaded-photo" style="padding: 10px;"></div>
             </div>
+            <label>Book gallery</label>
+            <div style="height: 150px" name="photo" class="form-group">
+                <input type="file" name="gallery" class="form-control-file" id="gallery" multiple>
+                <div id="uploaded-gallery" style="padding: 10px;"></div>
+            </div>
+
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-lg btn-block">Create user</button>
             </div>
         </form>
     </div>
+@endsection
+@section('scripts')
+    <script src="{{asset('js/lib/books.js')}}"></script>
+    <script>
+        const bookModule = booksModule()
+        $('#photo').change(function() {
+            bookModule.previewPhoto(this)
+        })
+
+        $('#gallery').change(function() {
+            bookModule.previewMultiplePhotos(this)
+        })
+
+
+
+
+    </script>
 @endsection
