@@ -29,5 +29,6 @@ Route::middleware(['isAdmin'])->group(function () {
     Route::get('/admin/users-list', 'FrontEndController@userList');
     Route::resource('/admin/users', 'UserController');
     Route::resource('/admin/books', 'BookController');
+    Route::resource('/admin/editions', 'EditionsController');
 
 });

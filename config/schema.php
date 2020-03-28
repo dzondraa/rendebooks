@@ -103,5 +103,26 @@ return [
               ]
           ]
       ]
-  ]
+  ],
+  'edition' => [
+      'title' => 'Edition',
+      'store-route-name' => 'editions.store',
+      'fields' => [
+          'name' => [
+              'label' => 'Edition name',
+              'type' => 'text',
+              'name' => 'name'
+          ],
+          'description' => [
+              'label' => 'Description',
+              'type' => 'textarea',
+              'name' => 'decription'
+          ],
+          'photo' => [
+              'label' => 'Edition photo',
+              'type' => 'file',
+              'name' => 'photo'
+          ],
+        ]
+    ]
 ];
