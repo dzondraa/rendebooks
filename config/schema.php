@@ -11,8 +11,10 @@
     */
 
 return [
+
   'book' => [
       'title' => 'Book',
+      'store-route-name' => 'books.store',
       'fields' => [
           'title' => [
               'label' => 'Title',
@@ -53,6 +55,53 @@ return [
               'name' => 'gallery',
               'multiple' => true
           ],
+      ]
+  ],
+  'user' => [
+      'title' => 'User',
+      'store-route-name' => 'users.store',
+      'fields' => [
+          'first-name' => [
+              'label' => 'First name',
+              'type' => 'text',
+              'name' => 'first_name'
+          ],
+          'last-name' => [
+              'label' => 'Last name',
+              'type' => 'text',
+              'name' => 'last_name'
+          ],
+          'username' => [
+              'label' => 'Username',
+              'type' => 'text',
+              'name' => 'username'
+          ],
+          'password' => [
+              'label' => 'Password',
+              'type' => 'password',
+              'name' => 'password'
+          ],
+          'email' => [
+              'label' => 'Email',
+              'type' => 'text',
+              'name' => 'email'
+          ],
+
+          'phone-number' => [
+              'label' => 'Phone number',
+              'type' => 'text',
+              'name' => 'phone_number'
+          ],
+          'role' => [
+              'label' => 'Phone number',
+              'type' => 'select',
+              'name' => 'role',
+              'options' => [
+                  '0' => 'Select user role',
+                  '1' => 'Admin',
+                  '2' => 'User'
+              ]
+          ]
       ]
   ]
 ];

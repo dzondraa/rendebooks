@@ -36,7 +36,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = $this->model->getRoles();
-        return view('admin.pages.create-user')->with('roles', $roles);
+        return view('admin.layouts.admin-create')->with('schema', 'user');
     }
 
     /**
