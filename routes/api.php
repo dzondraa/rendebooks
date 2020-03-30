@@ -22,4 +22,6 @@ Route::middleware(['AuthKey'])->group(function () {
     Route::get('/work', function () {
         return response()->json(['message' => 'AUTHENTICATED']);
     });
+
+    Route::post('/login', 'LoginController@apiLogin');
 });

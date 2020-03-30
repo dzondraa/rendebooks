@@ -29,7 +29,7 @@ class LoginController extends Controller
     }
 
     public function login(Request $request) {
-        $user = $this->model->getUser($request->get('username'), $request->get('password'));
+        $user = $this->tryLogin($request->get('username'), $request->get('password'));
         if(!$user->isEmpty()) {
             session()->put('user', $user->first());
             if($user->first()->role == 1) {
@@ -39,7 +39,19 @@ class LoginController extends Controller
             }
         }
         return redirect('/login');
+    }
 
+    public  function apiLogin (Request $request) {
+        $request = json_decode($request->getContent());
+        $user = $this->tryLogin($request->username, $request->password);
+        if(!$user->isEmpty()) {
+            return $user;
+        }
+        return response()->json(['message' => 'Bad login'] , 401);
+    }
+
+    private function tryLogin($username, $password) {
+        return $this->model->getUser($username, $password);
     }
 
     public function logout() {
