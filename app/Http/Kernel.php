@@ -2,7 +2,9 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AuthKey;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Illuminate\Support\Facades\Auth;
 
 class Kernel extends HttpKernel
 {
@@ -41,6 +43,7 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+
         ],
     ];
 
@@ -64,5 +67,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'isAdmin' => \App\Http\Middleware\isAdmin::class,
         'userRegistrationValidator' => \App\Http\Middleware\UserRegistrationValidator::class,
+        'AuthKey' => \App\Http\Middleware\AuthKey::class,
     ];
 }
