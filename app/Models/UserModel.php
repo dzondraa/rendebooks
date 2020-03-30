@@ -81,4 +81,17 @@ class UserModel
         }
 
     }
+
+    public function updateToken($username, $token) {
+        try {
+            DB::table('users')
+                ->where('username', '=', $username)
+                ->update([
+                    'api_token' => $token
+                ]);
+        } catch (\PDOException $exception) {
+            Log::error($exception->getMessage());
+        }
+
+    }
 }
