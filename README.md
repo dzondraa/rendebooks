@@ -9,5 +9,5 @@
 - Token authorization is supported. This means that after successful login, the authorization token is obtained. Every subsequent API call should have this token inside the "Authorization" header field like so:
 
 ```
-Authorization: Bearer 12345
+Authorization: UUFqdE9xOEVYSmptUWdGb3FLMnVSQ1JhMnhyZkVmVjAwRWt4R0tWOWpKbmFRNjZQYWd4aFlrMWQ2bTJJ5e827d22aaa0d
 ```
