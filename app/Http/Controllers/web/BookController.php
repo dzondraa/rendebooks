@@ -1,32 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\web;
 
-use App\Http\Requests\EditUser;
-use App\Models\UserModel;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class UserController extends Controller
+class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    private $model;
-
-    public  function __construct()
-    {
-        $this->model = new UserModel();
-        $this->middleware('userRegistrationValidator', ['only' => ['store']]);
-    }
-
     public function index()
     {
-        return $this->model->get();
+        //
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -35,8 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = $this->model->getRoles();
-        return view('admin.layouts.admin-create')->with('schema', 'user');
+        return view('admin.pages.create-book', ['schema' => 'book']);
     }
 
     /**
@@ -47,10 +35,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $success = $this->model->insert($request->username, $request->first_name, $request->last_name, md5($request->password), $request->email, $request->phone_number, $request->role);
-        if($success) {
-            return redirect('/admin/users-list')->with('message', 'User created successfuly!');
-        }
+        //
     }
 
     /**
@@ -61,7 +46,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return $this->model->get($id);
+        //
     }
 
     /**
@@ -82,10 +67,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EditUser $request, $id)
+    public function update(Request $request, $id)
     {
-        $validated = $request->validated();
-        $this->model->update($id, $request->input());
+        //
     }
 
     /**
@@ -96,7 +80,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $res = $this->model->delete($id);
-        return $this->model->get();
+        //
     }
 }

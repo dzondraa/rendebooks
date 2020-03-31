@@ -24,4 +24,5 @@ Route::middleware(['AuthKey'])->group(function () {
     });
 
     Route::post('/login', 'LoginController@postLogin');
+    Route::resource('user' , 'BookController');
 });

@@ -1,20 +1,34 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\BaseControllers;
 
+use App\Http\Requests\EditUser;
+use App\Models\UserModel;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class BookController extends Controller
+abstract class UserBaseController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    protected $model;
+
+    public function __construct()
+    {
+        $this->model = new UserModel();
+        $this->middleware('userRegistrationValidator', ['only' => ['store']]);
+    }
+
     public function index()
     {
-        //
+        return $this->model->get();
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -23,7 +37,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.create-book', ['schema' => 'book']);
+        $roles = $this->model->getRoles();
+        return view('admin.layouts.admin-create')->with('schema', 'user');
     }
 
     /**
@@ -32,10 +47,8 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    public abstract function store(Request $request);
+
 
     /**
      * Display the specified resource.
@@ -45,7 +58,7 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        //
+        return $this->model->get($id);
     }
 
     /**
@@ -54,22 +67,7 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    public abstract function edit($id);
 
     /**
      * Remove the specified resource from storage.
@@ -79,6 +77,7 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $res = $this->model->delete($id);
+        return $this->model->get();
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\web\LoginController;
 use Closure;
 
 class IsAdmin

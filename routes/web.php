@@ -17,18 +17,18 @@ use App\Http\Middleware;
 Route::get('/', function () {
     return view('pages.home');
 });
-Route::post('/login', 'LoginController@login')->name('login');
-Route::get('/login', 'LoginController@create')->name('loginForm');
-Route::get('/logout', 'LoginController@logout')->name('logout');
+Route::post('/login', 'web\LoginController@login')->name('login');
+Route::get('/login', 'web\LoginController@create')->name('loginForm');
+Route::get('/logout', 'web\LoginController@logout')->name('logout');
 
 
 // PROTECTED ADMIN ROUTES
 
 Route::middleware(['isAdmin'])->group(function () {
-    Route::get('/admin', 'FrontEndController@admin');
-    Route::get('/admin/users-list', 'FrontEndController@userList');
-    Route::resource('/admin/users', 'UserController');
-    Route::resource('/admin/books', 'BookController');
-    Route::resource('/admin/editions', 'EditionsController');
+    Route::get('/admin', 'web\FrontEndController@admin');
+    Route::get('/admin/users-list', 'web\FrontEndController@userList');
+    Route::resource('/admin/users', 'web\UserController');
+    Route::resource('/admin/books', 'web\BookController');
+    Route::resource('/admin/editions', 'web\EditionsController');
 
 });
