@@ -4,6 +4,8 @@ namespace App\Http\Controllers\web;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class BookController extends Controller
 {
@@ -35,7 +37,21 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $path = $request->photo->store('public');
+            $files = $request->file('gallery');
+            foreach ($files as $file) {
+                $file->store('public/books');
+            }
+        } catch (FileException $fileException) {
+            Log::error('File upload failed - Message: ' . $fileException->getMessage());
+        }
+        catch (\PDOException $pdoException) {
+            Log::error('Database error - Message: ' . $pdoException->getMessage());
+        } finally {
+            Log::warning('Unrecognized error in BookController store function.');
+        }
+
     }
 
     /**

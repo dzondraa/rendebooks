@@ -55,6 +55,22 @@ return [
               'name' => 'gallery',
               'multiple' => true
           ],
+          'category' => [
+              'label' => 'Category',
+              'type' => 'select',
+              'name' => 'category',
+              'options' => [
+                  '0' => 'Select category'
+              ]
+          ],
+          'edition' => [
+              'label' => 'Edition',
+              'type' => 'select',
+              'name' => 'edition',
+              'options' => [
+                  '0' => 'Select edition'
+              ]
+          ]
       ]
   ],
   'user' => [

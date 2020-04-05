@@ -8,6 +8,9 @@
 @section('content')
     <div class="container">
         <h1 class="text-center">Create {{ $schema['title'] }}</h1>
+
+            <img src="{{asset('storage/KEU34khFpKDw44qXOM9Rmn4MbbOvYfsQ2u4qNglo.jpeg')}}">
+
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -18,7 +21,7 @@
             </div>
         @endif
 
-        <form action="{{route($storeRouteName)}}" method="post">
+        <form action="{{route($storeRouteName)}}" method="post" enctype="multipart/form-data">
             @csrf
             @foreach($schema['fields'] as $field)
                 <div class="form-group">
@@ -37,10 +40,11 @@
                                     <option  value="{{ $key }}" id="{{$key}}">{{$opt}}</option>
                                 @endforeach
                             </select>
+                            @php break; @endphp
                         @endif
                         <input type="{{ $field['type'] }}"
                                id="{{ $field['name'] }}"
-                               name="{{ $field['name'] }}"
+                               name="{{ $field['name'] }}{{ array_key_exists('multiple', $field) && $field['multiple'] == true ? '[]' : '' }}"
                                class="form-control"
                                placeholder="{{  array_key_exists('placeholder', $field) ? $field['placeholder'] : "" }}"
                         @if(array_key_exists('multiple', $field))

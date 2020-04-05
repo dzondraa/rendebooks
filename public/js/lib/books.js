@@ -28,5 +28,6 @@ function booksModule() {
 
     }
 
+
     return { previewPhoto, previewMultiplePhotos }
 }
